@@ -3,7 +3,7 @@ About python-louvain
 
 Home: https://github.com/taynaud/python-louvain
 
-Package license: 
+Package license: None
 
 Feedstock license: BSD 3-Clause
 
