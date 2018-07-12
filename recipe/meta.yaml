@@ -1,6 +1,6 @@
 {% set name = "python-louvain" %}
-{% set version = "0.10" %}
-{% set sha256 = "3b50d536f3eaf7363ae3c4167916ec7b055a4c70efc7c379b8e4c8dec724f6b3" %}
+{% set version = "0.11" %}
+{% set sha256 = "2ce7143f8d2bb4693a84dc0046dbf94dc576c9f6030f518f73c4420bfb2a442a" %}
 
 package:
   name: {{ name|lower }}
