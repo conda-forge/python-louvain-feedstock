@@ -1,6 +1,6 @@
 {% set name = "python-louvain" %}
-{% set version = "0.13" %}
-{% set sha256 = "b4938f20063bc53e68d5b182dcea0634dfb63a0e3489f929d4083c24a920b2fe" %}
+{% set version = "0.15" %}
+{% set sha256 = "2a856edfbe29952a60a5538a84bb78cca18f6884a88b9325e85a11c8dd4917eb" %}
 
 package:
   name: {{ name|lower }}
@@ -13,11 +13,11 @@ source:
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
   noarch: python
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
@@ -32,7 +32,7 @@ test:
 about:
   home: https://github.com/taynaud/python-louvain
   license: None
-  summary: 'Louvain Community Detection'
+  summary: Louvain Community Detection
   description: |
     This module implements community detection.
 
