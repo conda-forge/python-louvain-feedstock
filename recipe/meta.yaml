@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   noarch: python
 
@@ -31,7 +31,7 @@ test:
 
 about:
   home: https://github.com/taynaud/python-louvain
-  license: None
+  license: BSD-3C
   summary: Louvain Community Detection
   description: |
     This module implements community detection.
