@@ -31,7 +31,10 @@ test:
 
 about:
   home: https://github.com/taynaud/python-louvain
-  license: BSD-3C
+  license: BSD-3-Clause
+  license_url: https://opensource.org/licenses/BSD-3-Clause
+  license_file: LICENSE
+  license_family: BSD
   summary: Louvain Community Detection
   description: |
     This module implements community detection.
