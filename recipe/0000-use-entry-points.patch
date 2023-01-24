@@ -1,0 +1,16 @@
+diff --git a/setup.py b/setup.py
+index 87dd4e7..1c24f3f 100644
+--- a/setup.py
++++ b/setup.py
+@@ -21,6 +21,9 @@ setup(
+         "networkx",
+         "numpy"
+     ],
+-
+-    scripts=['bin/community']
++    entry_points={
++        "console_scripts": [
++            "community = community._cli:main"
++        ]
++    }
+ )
