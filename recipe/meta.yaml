@@ -1,38 +1,46 @@
-{% set name = "python-louvain" %}
-{% set version = "0.15" %}
-{% set sha256 = "2a856edfbe29952a60a5538a84bb78cca18f6884a88b9325e85a11c8dd4917eb" %}
+{% set version = "0.16" %}
 
 package:
-  name: {{ name|lower }}
+  name: python-louvain
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/p/python-louvain/python-louvain-{{ version }}.tar.gz
+  sha256: b7ba2df5002fd28d3ee789a49532baad11fe648e4f2117cf0798e7520a1da56b
+  patches:
+    - 0000-use-entry-points.patch
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
+  script:
+    - {{ PYTHON }} -c "__import__('pathlib').Path('bin/community').rename('community/_cli.py')"
+    - {{ PYTHON }} -m pip install . --no-deps -vv
   noarch: python
+  entry_points:
+    - community = community._cli:main
 
 requirements:
   host:
-    - python >=3.6
     - pip
-  run:
     - python >=3.6
+  run:
     - networkx
     - numpy
+    - python >=3.6
 
 test:
+  requires:
+    - pip
   imports:
     - community
+  commands:
+    - pip check
+    # has no --version or --help, just check if it ends up on $PATH
+    - which community || where community
 
 about:
   home: https://github.com/taynaud/python-louvain
   license: BSD-3-Clause
-  license_url: https://opensource.org/licenses/BSD-3-Clause
   license_file: LICENSE
   license_family: BSD
   summary: Louvain Community Detection
@@ -51,3 +59,4 @@ extra:
   recipe-maintainers:
     - ericmjl
     - MridulS
+    - bollwyvl
