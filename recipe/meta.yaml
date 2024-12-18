@@ -5,13 +5,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/python-louvain/python-louvain-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/python-louvain/python-louvain-{{ version }}.tar.gz
   sha256: b7ba2df5002fd28d3ee789a49532baad11fe648e4f2117cf0798e7520a1da56b
   patches:
     - 0000-use-entry-points.patch
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -c "__import__('pathlib').Path('bin/community').rename('community/_cli.py')"
     - {{ PYTHON }} -m pip install . --no-deps -vv
@@ -22,15 +22,17 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
   run:
     - networkx
     - numpy
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   requires:
     - pip
+    - python {{ python_min }}
   imports:
     - community
   commands:
